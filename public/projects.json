@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Circle8",
+    "description": "Job site for the construction industry",
+    "image": "/images/circle8.png",
+    "tags": ["React", "Node", "Express", "MongoDB", "AWS"]
+  },
+  {
+    "id": 2,
+    "name": "Consolid",
+    "description": "Job site for the banking industry",
+    "image": "/images/consolid.png",
+    "tags": ["Nextjs", "Node"]
+  },
+  {
+    "id": 2,
+    "name": "Rijkswaterstaat",
+    "description": "Job site for the banking industry",
+    "image": "/images/rijkswaterstaat.png",
+    "tags": ["Nextjs", "Node"]
+  }
+]
