@@ -1,3 +1,4 @@
+import { PageContainer } from '@/styles/globals';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <section>
+    <PageContainer>
       <h1>About page</h1>
-    </section>
+    </PageContainer>
   );
 }

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
-import { Project } from '../../types';
 import ProjectLister from '@/components/ProjectLister';
+import { getProjects } from '../actions';
+import { PageContainer } from '@/styles/globals';
 
 export const metadata: Metadata = {
   title: 'Projects page',
@@ -8,15 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default async function Projects() {
-  const res = await fetch('https://portfolio.free.beeceptor.com/projects', {
-    cache: 'force-cache',
-  });
-  const projects: Project[] = await res.json();
+  const projects = await getProjects();
 
   return (
-    <section>
-      <h1>Projects page</h1>
-      <ProjectLister projects={projects} />
-    </section>
+    <PageContainer>
+      <h1>My projects</h1>
+      {projects.length > 0 && <ProjectLister projects={projects} />}
+    </PageContainer>
   );
 }

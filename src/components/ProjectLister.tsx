@@ -1,10 +1,19 @@
 'use client';
 import { Project } from '@/types';
-import React, { useEffect } from 'react';
+import ProjectCard from './ProjectCard';
+import styled from 'styled-components';
 
 interface ProjectListerProps {
   projects: Project[];
 }
+
+const ComponentWrapper = styled.div``;
+
+const ListContainer = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+`;
 
 const ProjectLister: React.FC<ProjectListerProps> = ({ projects }) => {
   const sortedProjects = projects.sort(
@@ -12,17 +21,13 @@ const ProjectLister: React.FC<ProjectListerProps> = ({ projects }) => {
   );
 
   return (
-    <div>
-      <h2>Project List</h2>
-      <ul>
+    <ComponentWrapper>
+      <ListContainer>
         {sortedProjects.map((project) => (
-          <li key={project.id}>
-            <h3>{project.name}</h3>
-            <p>{project.description}</p>
-          </li>
+          <ProjectCard key={project.id} {...project} />
         ))}
-      </ul>
-    </div>
+      </ListContainer>
+    </ComponentWrapper>
   );
 };
 

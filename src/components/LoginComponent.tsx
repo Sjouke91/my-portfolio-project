@@ -1,31 +1,22 @@
 import { redirect } from 'next/navigation';
 import { getSession, login, logout } from '@/lib/login';
+import Button from './elements/Button';
+import { Container, Form, Input } from '@/styles/globals';
 
 export default async function Page() {
   const session = await getSession();
   return (
-    <section>
-      <form
+    <Container>
+      <Form
         action={async (formData) => {
           'use server';
           await login(formData);
           redirect('/admin');
         }}
       >
-        <input type='email' placeholder='Email' />
-        <br />
-        <button type='submit'>Login</button>
-      </form>
-      <form
-        action={async () => {
-          'use server';
-          await logout();
-          redirect('/');
-        }}
-      >
-        <button type='submit'>Logout</button>
-      </form>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
-    </section>
+        <Input type='email' placeholder='Email' />
+        <Button type='submit'>Login</Button>
+      </Form>
+    </Container>
   );
 }

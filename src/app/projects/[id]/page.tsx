@@ -1,5 +1,6 @@
 /**  NOTE: These project detail pages should be SSG and prebuild at build time since content on these pages will not change very often */
 
+import { PageContainer } from '@/styles/globals';
 import { Project } from '@/types';
 import { Metadata } from 'next';
 
@@ -27,8 +28,8 @@ export default async function Projects({
 }) {
   const id = (await params).id;
   return (
-    <div>
+    <PageContainer>
       <h1>Project ID: {id}</h1>
-    </div>
+    </PageContainer>
   );
 }
