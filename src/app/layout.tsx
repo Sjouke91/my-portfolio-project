@@ -1,22 +1,19 @@
+import { FooterNavigation } from '@/components/FooterNavigation';
 import { ProfileHeader } from '@/components/ProfileHeader';
-import { Roboto } from 'next/font/google';
+import { ReactNode } from 'react';
+import './globals.css';
 
-const roboto = Roboto({
-  variable: '--font-roboto',
-  weight: ['100', '300', '500', '700', '900'],
-  subsets: ['latin'],
-});
+interface RootLayoutProps {
+  children: ReactNode;
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en'>
-      <body className={`${roboto.variable}`}>
+      <body>
         <ProfileHeader />
         {children}
+        <FooterNavigation />
       </body>
     </html>
   );

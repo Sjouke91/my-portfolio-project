@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 export default function Admin() {
   return (
-    <div>
+    <section>
       <h1>Admin page</h1>
-    </div>
+    </section>
   );
 }
