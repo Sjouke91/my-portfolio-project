@@ -9,13 +9,9 @@ export const metadata: Metadata = {
 };
 
 export async function generateStaticParams() {
-  const res = await fetch(
-    'https://67a767c4203008941f6784ce.mockapi.io/api/v1/project',
-    {
-      //Cache the result and use it for SSG.
-      cache: 'force-cache',
-    }
-  );
+  const res = await fetch('https://portfolio.free.beeceptor.com/projects', {
+    cache: 'force-cache',
+  });
 
   const projects: Project[] = await res.json();
 
