@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 
 export default async function Projects() {
   const res = await fetch('https://portfolio.free.beeceptor.com/projects', {
-    // This tells Next.js to cache the result and use it for SSG.
     cache: 'force-cache',
   });
   const projects: Project[] = await res.json();
