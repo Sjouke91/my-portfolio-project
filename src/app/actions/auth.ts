@@ -1,3 +1,4 @@
+'use server';
 import { SignJWT, jwtVerify, errors } from 'jose';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
@@ -36,6 +37,10 @@ export async function login(formData: FormData) {
   // Verify credentials and get the user (replace this with actual logic)
   const user = { email: formData.get('email'), name: 'John Doe' };
 
+  /* 
+  hardcoded check on specific email.
+  */
+
   // Create the session with a 10-minute expiration
   const expires = new Date(Date.now() + 10 * 60 * 1000);
   const session = await encrypt({ user, expires: expires.toISOString() });
@@ -52,7 +57,7 @@ export async function login(formData: FormData) {
 // Handle user logout by clearing the session cookie
 export async function logout() {
   const cookieStore = await cookies();
-  cookieStore.set('session', '', { expires: new Date(0) });
+  cookieStore.delete('session');
 }
 
 // Retrieve the current session by decrypting the cookie

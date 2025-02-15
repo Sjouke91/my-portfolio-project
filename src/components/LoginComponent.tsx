@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { getSession, login, logout } from '@/lib/login';
+import { getSession, login, logout } from '@/app/actions/auth';
 import Button from './elements/Button';
 import { Container, Form, Input } from '@/styles/globals';
 
