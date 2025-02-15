@@ -1,8 +1,8 @@
 'use client';
-
-import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import AboutIcon from 'public/icons/about.svg';
+import Image from 'next/image';
 
 const Footer = styled.footer`
   background: #f8f9fa;
@@ -31,7 +31,7 @@ const NavItem = styled.li`
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    color: #0070f3;
+    color: #19191b;
     font-size: 16px;
     transition: color 0.2s ease-in-out;
 
@@ -47,44 +47,42 @@ const NavItem = styled.li`
   }
 `;
 
-const AboutIcon = () => (
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-    <path d='M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z' />
-    <circle cx='12' cy='10' r='1' />
-    <path d='M11 12h2v6h-2z' />
-  </svg>
-);
-
-const ProjectsIcon = () => (
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-    <path d='M20 6h-4V4a2 2 0 00-2-2H10a2 2 0 00-2 2v2H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2zM8 4h8v2H8V4zm12 14H4V8h16v10z' />
-  </svg>
-);
-
-const AdminIcon = () => (
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
-    <path d='M12 2a5 5 0 00-5 5v1H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 6V7a3 3 0 016 0v1H9zm7 3H8v7h8v-7z' />
-  </svg>
-);
-
 export const FooterNavigation: React.FC = () => (
   <Footer>
     <NavList>
       <NavItem>
         <Link href='/about'>
-          <AboutIcon />
+          <Image
+            src='/icons/about.svg'
+            alt='Search'
+            width={28}
+            height={28}
+            className='absolute left-3 top-1/2 transform -translate-y-1/2'
+          />
           About
         </Link>
       </NavItem>
       <NavItem>
         <Link href='/projects'>
-          <ProjectsIcon />
+          <Image
+            src='/icons/projects.svg'
+            alt='Projects'
+            width={28}
+            height={28}
+            className='absolute left-3 top-1/2 transform -translate-y-1/2'
+          />
           Projects
         </Link>
       </NavItem>
       <NavItem>
         <Link href='/admin'>
-          <AdminIcon />
+          <Image
+            src='/icons/profile.svg'
+            alt='Profile'
+            width={28}
+            height={28}
+            className='absolute left-3 top-1/2 transform -translate-y-1/2'
+          />
           Admin
         </Link>
       </NavItem>
