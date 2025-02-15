@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
-const Card = styled(Link)`
+const Card = styled.li`
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -14,6 +14,11 @@ const Card = styled(Link)`
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
   border: 1px solid #eaeaea;
+
+  a {
+    width: 100%;
+    height: 100%;
+  }
 
   &:hover {
     transform: translateY(-5px);
@@ -70,23 +75,25 @@ const ProjectCard: React.FC<Project> = ({
   id,
 }) => {
   return (
-    <Card href={`/projects/${id}`}>
-      {image && (
-        <ImageWrapper>
-          <NextImage src={image} alt={name} fill priority />
-        </ImageWrapper>
-      )}
-      <Content>
-        {name && <Title>{name}</Title>}
-        {description && <Description>{description}</Description>}
-        {tags.length > 0 && (
-          <TagList>
-            {tags.map((tag, index) => (
-              <Tag key={index}>{tag}</Tag>
-            ))}
-          </TagList>
+    <Card>
+      <Link href={`/projects/${id}`}>
+        {image && (
+          <ImageWrapper>
+            <NextImage src={image} alt={name} fill priority />
+          </ImageWrapper>
         )}
-      </Content>
+        <Content>
+          {name && <Title>{name}</Title>}
+          {description && <Description>{description}</Description>}
+          {tags.length > 0 && (
+            <TagList>
+              {tags.map((tag, index) => (
+                <Tag key={index}>{tag}</Tag>
+              ))}
+            </TagList>
+          )}
+        </Content>
+      </Link>
     </Card>
   );
 };

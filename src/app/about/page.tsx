@@ -1,4 +1,5 @@
 import { PageContainer } from '@/styles/globals';
+import { Text, Title } from '@/styles/typography';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -9,7 +10,11 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <PageContainer>
-      <h1>About page</h1>
+      <Title>About Me</Title>
+      <Text size='medium'>
+        Hi, I'm a passionate developer who loves building web applications and
+        exploring new technologies.
+      </Text>
     </PageContainer>
   );
 }

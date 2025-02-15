@@ -11,7 +11,7 @@ interface TextProps {
   children: React.ReactNode;
 }
 
-const Text = styled.p<TextProps>`
+export const Text = styled.p<TextProps>`
   font-size: ${({ size = 'medium' }) => {
     switch (size) {
       case 'small':
@@ -32,14 +32,12 @@ const Text = styled.p<TextProps>`
   margin: 0;
 `;
 
-export const DynamicText: React.FC<TextProps> = ({
-  size = 'medium',
-  children,
-  ...props
-}) => {
-  return (
-    <Text size={size} {...props}>
-      {children}
-    </Text>
-  );
-};
+export const Title = styled.h1`
+  font-size: 32px;
+  color: #333;
+`;
+
+export const Subtitle = styled.h2`
+  font-size: 28px;
+  color: #333;
+`;

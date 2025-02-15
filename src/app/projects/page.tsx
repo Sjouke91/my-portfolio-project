@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import ProjectLister from '@/components/ProjectLister';
 import { getProjects } from '../actions';
 import { PageContainer } from '@/styles/globals';
+import ProjectLister from '@/components/ProjectLister';
 
 export const metadata: Metadata = {
   title: 'Projects page',
@@ -14,7 +14,9 @@ export default async function Projects() {
   return (
     <PageContainer>
       <h1>My projects</h1>
-      {projects.length > 0 && <ProjectLister projects={projects} />}
+      {projects.length > 0 && (
+        <ProjectLister projects={projects} displayType='grid' />
+      )}
     </PageContainer>
   );
 }
