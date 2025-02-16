@@ -1,4 +1,5 @@
 'use client';
+import { Tag } from '@/styles/globals';
 import { Project } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -57,14 +58,6 @@ const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-`;
-
-const Tag = styled.span`
-  background: #0073e6;
-  color: white;
-  font-size: 0.875rem;
-  padding: 4px 8px;
-  border-radius: 8px;
 `;
 
 const ProjectCard: React.FC<Project> = ({

@@ -4,23 +4,24 @@ import styled from 'styled-components';
 export const PageContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 16px;
+  height: 100%;
 `;
 
 export const Container = styled.div`
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 20px;
+  max-width: 500px;
+  width: 100%;
 `;
 
 export const Input = styled.input`
@@ -56,16 +57,17 @@ export const ProfileImageWrapper = styled.div`
 
 export const Info = styled.div`
   display: flex;
+  gap: 8px;
   flex-direction: column;
   h1 {
-    font-size: 1.5rem;
-    margin: 0;
-    color: #333;
+    margin-bottom: 0;
   }
+`;
 
-  p {
-    font-size: 1rem;
-    color: #555;
-    margin: 4px 0 0;
-  }
+export const Tag = styled.span`
+  background: #007bff;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 8px;
 `;

@@ -35,6 +35,7 @@ export const Text = styled.p<TextProps>`
 export const Title = styled.h1`
   font-size: 32px;
   color: #333;
+  margin-bottom: 16px;
 `;
 
 export const Subtitle = styled.h2`

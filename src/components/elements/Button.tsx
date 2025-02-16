@@ -2,7 +2,7 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 
-type Variant = 'primary' | 'secondary' | 'outline';
+type Variant = 'primary' | 'secondary' | 'outline' | 'link';
 type Size = 'small' | 'medium' | 'large';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -12,10 +12,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  variant = 'primary',
-  size = 'medium',
+  variant,
+  size,
   ...props
 }) => {
+  console.log({ variant });
   return (
     <StyledButton variant={variant} size={size} {...props}>
       {children}
@@ -85,6 +86,20 @@ const StyledButton = styled.button<ButtonProps>`
 
       &:hover {
         background-color: #eef2ff;
+      }
+    `}
+
+      ${(props) =>
+    props.variant === 'link' &&
+    css`
+      background-color: transparent;
+      border: none;
+      color: #4f46e5;
+      padding: 8px 0;
+      width: fit-content;
+
+      &:hover {
+        text-decoration: underline;
       }
     `}
 `;

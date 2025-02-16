@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 export default function Login() {
   return (
     <PageContainer>
-      <h1>Login page</h1>
       <Suspense fallback={<div>Loading...</div>}>
         <LoginComponent />
       </Suspense>
