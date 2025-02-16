@@ -30,17 +30,62 @@ export const getSingleProject = async ({
 };
 
 export const updateProject = async ({
-  projectId,
+  id,
+  formData,
 }: {
-  projectId: string;
+  id: string;
+  formData: FormData;
 }): Promise<Project[]> => {
-  return [];
+  try {
+    // Get form data values
+    const updatedProject = {
+      name: formData.get('name') as string,
+      description: formData.get('description') as string,
+      image: formData.get('image') as string,
+      tags: (formData.getAll('tags') as string[]) || [],
+    };
+
+    // Simulating fetching existing projects (Replace with API call)
+    const projects: Project[] = mockedData;
+
+    // Find project by ID
+    const projectIndex = projects.findIndex((project) => project.id === id);
+    if (projectIndex === -1) {
+      throw new Error('Project not found');
+    }
+
+    // Update the project
+    projects[projectIndex] = { ...projects[projectIndex], ...updatedProject };
+
+    // Simulating saving updated projects (Replace with an API request)
+    return projects;
+  } catch (error) {
+    console.error('Error updating project:', error);
+    return [];
+  }
 };
 
 export const deleteProject = async ({
-  projectId,
+  id,
 }: {
-  projectId: string;
+  id: string;
 }): Promise<Project[]> => {
-  return [];
+  try {
+    // Simulating fetching existing projects (Replace with API call)
+    const projects: Project[] = mockedData;
+
+    // Filter out the project to delete
+    const updatedProjects = projects.filter((project) => project.id !== id);
+
+    // If no project was removed, return an error or handle appropriately
+    if (updatedProjects.length === projects.length) {
+      throw new Error('Project not found');
+    }
+
+    // Simulating saving updated projects (Replace with an API request)
+    return updatedProjects;
+  } catch (error) {
+    console.error('Error deleting project:', error);
+    return [];
+  }
 };

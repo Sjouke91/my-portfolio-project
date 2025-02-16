@@ -1,8 +1,8 @@
 import { PageContainer } from '@/styles/globals';
 import { Metadata } from 'next';
-import { getProjects } from '../actions';
 import { Text, Title } from '@/styles/typography';
 import ProjectLister from '@/components/ProjectLister';
+import { getProjects } from '../actions/project';
 
 export const metadata: Metadata = {
   title: 'Admin page',

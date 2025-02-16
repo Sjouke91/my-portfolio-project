@@ -36,6 +36,18 @@ export const Input = styled.input`
   }
 `;
 
+export const TextInput = styled.textarea`
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+
+  &:focus {
+    outline: none;
+    border-color: #0070f3;
+  }
+`;
+
 export const Header = styled.header`
   display: flex;
   align-items: center;
