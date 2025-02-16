@@ -4,7 +4,8 @@ import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 // import bcrypt from 'bcrypt';
 
-const secretKey = process.env.JWT_SECRET || 'fallbackSecret';
+//todo store in env vars
+const secretKey = 'JWT-secret';
 const key = new TextEncoder().encode(secretKey);
 
 // Utility function to encrypt the payload into a JWT
