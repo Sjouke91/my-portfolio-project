@@ -79,13 +79,13 @@ export async function login(formData: FormData) {
   }
 }
 
-// Handle user logout by clearing the session cookie
+// Log out by clearing the session cookie
 export async function logout() {
   const cookieStore = await cookies();
   cookieStore.delete('session');
 }
 
-// Retrieve the current session by decrypting the cookie
+// Get current session
 export async function getSession() {
   const cookieStore = await cookies();
   const session = cookieStore.get('session')?.value;

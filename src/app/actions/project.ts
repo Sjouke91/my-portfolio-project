@@ -1,6 +1,7 @@
 'use server';
 import { Project } from '@/types';
 import mockedData from '@/data/projects.json';
+import { revalidatePath } from 'next/cache';
 
 //todo find better mock api and set up REST routes for CRUD
 export const getProjects = async (): Promise<Project[] | null> => {
@@ -46,7 +47,7 @@ export const updateProject = async ({
       tags: (formData.getAll('tags') as string[]) || [],
     };
 
-    // Simulating fetching existing projects (Replace with API call)
+    // Fetch projects
     const projects: Project[] = mockedData;
 
     // Find project by ID
@@ -58,7 +59,8 @@ export const updateProject = async ({
     // Update the project
     projects[projectIndex] = { ...projects[projectIndex], ...updatedProject };
 
-    // Simulating saving updated projects (Replace with an API request)
+    // Todo: revalidate the updated project route
+
     return projects;
   } catch (error) {
     console.error('Error updating project:', error);
@@ -72,10 +74,10 @@ export const deleteProject = async ({
   id: string;
 }): Promise<Project[]> => {
   try {
-    // Simulating fetching existing projects (Replace with API call)
+    // Fetch projects
     const projects: Project[] = mockedData;
 
-    // Filter out the project to delete
+    // filter out projects that should not be deleted
     const updatedProjects = projects.filter((project) => project.id !== id);
 
     // If no project was removed, return an error or handle appropriately
