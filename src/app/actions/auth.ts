@@ -2,6 +2,7 @@
 import { SignJWT, jwtVerify, errors } from 'jose';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+// import bcrypt from 'bcrypt';
 
 const secretKey = process.env.JWT_SECRET || 'fallbackSecret';
 const key = new TextEncoder().encode(secretKey);
@@ -34,24 +35,48 @@ export async function decrypt(input: string): Promise<any> {
 
 // Handle user login and set a session cookie
 export async function login(formData: FormData) {
-  // Verify credentials and get the user (replace this with actual logic)
-  const user = { email: formData.get('email'), name: 'John Doe' };
+  try {
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
 
-  /* 
-  hardcoded check on specific email.
-  */
+    /*
+    todo: fetch user from database and compare hashed passwords using bcrypt
+    // Fetch user from a database
+    const user = await getUserByEmail(email);
 
-  // Create the session with a 10-minute expiration
-  const expires = new Date(Date.now() + 10 * 60 * 1000);
-  const session = await encrypt({ user, expires: expires.toISOString() });
+    if (!user) {
+      // Use a generic error message to prevent user enumeration
+      return { error: 'Invalid credentials' };
+    }
 
-  // Set the session cookie
-  const cookieStore = await cookies();
-  cookieStore.set('session', session, {
-    expires,
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-  });
+    // Verify password
+    const passwordMatch = await bcrypt.compare(password, user.passwordHash);
+
+    if (!passwordMatch) {
+      return { error: 'Invalid credentials' };
+    }
+    */
+
+    // Create the session with a 10-minute expiration
+    const expires = new Date(Date.now() + 10 * 60 * 1000);
+    const session = await encrypt({
+      email: email,
+      expires: expires.toISOString(),
+    });
+
+    // Set the session cookie
+    const cookieStore = await cookies();
+    cookieStore.set('session', session, {
+      expires,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error('Login error:', error);
+    return { error: 'An unexpected error occurred' };
+  }
 }
 
 // Handle user logout by clearing the session cookie
@@ -83,7 +108,7 @@ export async function updateSession(request: NextRequest) {
   if (!parsed) return NextResponse.next();
 
   // Refresh session expiration
-  parsed.expires = new Date(Date.now() + 10 * 60 * 1000).toISOString();
+  parsed.expires = new Date(Date.now() + 0.1 * 60 * 1000).toISOString();
   const newSession = await encrypt(parsed);
 
   const res = NextResponse.next();
