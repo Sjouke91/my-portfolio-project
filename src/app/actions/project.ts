@@ -2,6 +2,7 @@
 import { Project } from '@/types';
 import mockedData from '@/data/projects.json';
 
+//todo find better mock api and set up REST routes for CRUD
 export const getProjects = async (): Promise<Project[] | null> => {
   //   const res = await fetch('https://portfolio.free.beeceptor.com/projects', {
   //     cache: 'force-cache',

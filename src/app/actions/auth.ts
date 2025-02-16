@@ -1,7 +1,6 @@
 'use server';
 import { SignJWT, jwtVerify, errors } from 'jose';
 import { cookies } from 'next/headers';
-import { NextRequest, NextResponse } from 'next/server';
 // import bcrypt from 'bcrypt';
 
 //todo store in env vars
@@ -98,28 +97,4 @@ export async function getSession() {
     return null;
   }
   return parsed;
-}
-
-// Update the session to extend its expiration time
-export async function updateSession(request: NextRequest) {
-  const session = request.cookies.get('session')?.value;
-  if (!session) return NextResponse.next();
-
-  const parsed = await decrypt(session);
-  if (!parsed) return NextResponse.next();
-
-  // Refresh session expiration
-  parsed.expires = new Date(Date.now() + 0.1 * 60 * 1000).toISOString();
-  const newSession = await encrypt(parsed);
-
-  const res = NextResponse.next();
-  res.cookies.set({
-    name: 'session',
-    value: newSession,
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    expires: new Date(parsed.expires),
-  });
-
-  return res;
 }

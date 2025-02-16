@@ -16,7 +16,6 @@ const Button: React.FC<ButtonProps> = ({
   size,
   ...props
 }) => {
-  console.log({ variant });
   return (
     <StyledButton variant={variant} size={size} {...props}>
       {children}
